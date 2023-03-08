@@ -1,0 +1,132 @@
+UM SITE ONDE VC COLOCA A UM ANO E UM GENERO E VAI MOSTRA A IDADE E A FOTO DE UMA CRIANÇA HOMEM JOVEM OU VELHO DOS 2 GENEROS
+
+----------------------------------COGIDO-HTTML-------------------------------------------------
+
+<body">
+
+    <h1>verificador de indentidade</h1>
+
+    <section>
+        <div>
+            <p>ano de nascimento:
+                <input type="number" name="txtano" id="txtano">
+            </p>
+
+            <p> sexo:
+                <input type="radio" name="radisex" id="masc">
+                <label for="masc">masculino</label>
+                <input type="radio" name="radisex" id="fem">
+                <label for="fem">feminino</label>
+            </p>
+            <p>
+                <input type="button" value="verificar" onclick="verificar()">
+            </p>
+        </div>
+
+        <div id="res">
+            preencha os dados acima
+        </div>
+</section>
+ <footer>
+        <h1>luiz henrique</h1>
+
+    </footer>
+
+ <script src="index.js"></script>
+</body>
+</html>
+
+----------------------------------COGIDO-CSS---------------------------------------------------
+
+@charset "UTF-8";
+
+
+body {
+    background-color: rgb(0, 255, 247);
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 50px;
+}
+
+section {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.662);
+    border-radius: 10px;
+    background-color: white;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+}
+
+
+footer {
+    font-style: italic;
+}
+
+img {
+    width: 150px;
+    border-radius: 50px;
+}
+
+
+---------------------------------COGIDO-JAVASCRIPT---------------------------------------------
+
+function verificar() {
+    var data = new Date()
+    var ano = data.getFullYear()
+    var fano = window.document.getElementById('txtano')
+    var res = window.document.getElementById('res')
+    if (fano.value.length == 0 || fano.value > ano) {
+        window.alert('verifique os dados novamente')
+    } else {
+        var fsex = window.document.getElementsByName('radisex')
+        var idade = ano - Number(fano.value)
+        var genero = ''
+        var img = document.createElement('img')
+        img.setAttribute('id', 'foto')
+        if (fsex[0].checked) {
+            genero = 'masculino'
+            if (idade >= 0 && idade < 10) {
+                //criança
+                img.setAttribute('src', 'img/criança mas.jpg')
+            } else if (idade < 21) {
+                //jovem
+                img.setAttribute('src', 'img/jovem.jpg')
+            } else if (idade < 50) {
+                //adulto
+                img.setAttribute('src', 'img/homem.jpg')
+            } else {
+                //velho
+                img.setAttribute('src', 'img/velho.jpg')
+            }
+        } else if (fsex[1].checked) {
+            genero = 'femenino'
+            if (idade >= 0 && idade < 10) {
+                //criança
+                img.setAttribute('src', 'img/criança fem.jpg')
+            } else if (idade < 21) {
+                //jovem
+                img.setAttribute('src', 'img/jovem fem.jpg')
+            } else if (idade < 50) {
+                //adulto
+                img.setAttribute('src', 'img/mulher.jpg')
+            } else {
+                //velho
+                img.setAttribute('src', 'img/velha.jpg')
+            }
+        }
+        res.style.textAlign = 'center'
+        res.innerHTML = `detectamos ${genero} com ${idade} anos`
+        res.appendChild(img)
+    }
+
+}
+
