@@ -82,4 +82,4 @@ var diferençaTempo = dataFinal.getTime() - dataInicial.getTime();
 
 var diferençasDias = Math.ceil(diferençaTempo / (24 * 60 * 60 * 1000));
 
-alert(diferençasDias + " dias")
+alert(diferençasDias + "dias")
